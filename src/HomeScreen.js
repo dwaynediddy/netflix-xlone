@@ -6,7 +6,6 @@ const HomeScreen = () => {
   return (
     <div className="homeScreen">
        <Nav />
-
         {/* banner */}
 
         {/* row */}
