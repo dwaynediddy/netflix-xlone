@@ -1,7 +1,26 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import '../styles/Banner.css'
+import axios from '../axios'
+import requests from '../Request'
 
 const Banner = () => {
+
+  const [movie, setMovie] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(requests.fetchNetflixOriginals)
+      setMovie(
+        request.data.results[
+          Math.floor(Math.random() * request.data.results.length - 1)
+        ]
+      )
+      return request
+    }
+    fetchData()
+  }, [])
+
+  console.log(movie)
 
   let truncate = (str, n) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str
