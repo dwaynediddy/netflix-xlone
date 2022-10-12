@@ -1,11 +1,11 @@
 import { useRef } from 'react'
 import { auth }from '../firebase'
+import "firebase/auth"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 import '../styles/Signup.css'
 
-const SignInScreen = () => {
-
+const SignUpScreen = () => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
 
@@ -26,12 +26,14 @@ const SignInScreen = () => {
 
   const signIn = (e) => {
     e.preventDefault()
+    
     signInWithEmailAndPassword(
       auth,
       emailRef.current.value, 
       passwordRef.current.value
     ).then((authUser) => {
       console.log(authUser)
+      console.log('this is sign in function')
     }).catch(err => {
       alert(err.message)
     })
@@ -61,4 +63,4 @@ const SignInScreen = () => {
   )
 }
 
-export default SignInScreen
+export default SignUpScreen
