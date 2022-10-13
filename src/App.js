@@ -20,18 +20,17 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
       if (userAuth) {
         // logged in
-        console.log(userAuth, 'is logged in')
         dispatch(login({
           uid: userAuth.uid,
           email: userAuth.email
         }))
       } else {
         // logged out
-        dispatch(logout)
+        dispatch(logout())
       }
     })
     return unsubscribe
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="app">
